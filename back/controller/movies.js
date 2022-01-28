@@ -9,7 +9,7 @@ module.exports = {
         try {
             const response = await axios.get(url);
             /* console.log(response.data); */
-            res.json(response.data);
+            res.json(response.data.results);
         } catch (err) {
             console.error(err)
         }
