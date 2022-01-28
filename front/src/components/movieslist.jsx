@@ -8,21 +8,53 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import starwars from '../img/starwars.jpg';
 import { CardActionArea } from '@mui/material';
+import axios from 'axios'
 
-function RenderRow(props) {
-  const { index, style } = props;
+
+const getData = (state, dispatch) => async (e) => {
+  const index = parseInt(e.visibleStartIndex);
+  if ((index % 20) == 0){
+    let page = parseInt((index) / 20) + 1;
+    const response = await axios.get(`http://localhost:3000/api/page/${page}`);
+    const data = response.data;
+    dispatch({type: 'getData', payload: data, page: page, index:index});
+  }else{
+    
+  }
+}
+
+const MakeRow = (state, dispatch) => ({index, style}) => (
+  <Row 
+    index = {index}
+    style = {style}
+    state = {state}
+    dispatch = {dispatch}
+  />
+)
+
+const check_state = (state, index, key) => {
+  try{
+    return state.data[index][key]
+  }
+  catch{
+    return 'loading'
+  }
+}
+
+function Row({index, style, state, dispatch}) {
+
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
       <Card sx={{ display: 'flex', width: '100vw', height:'20vh'}} key={index}>
         <CardActionArea sx={{display: 'flex', flexDirection: 'row'}}>
           <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5" sx={{marginLeft: '3%', marginTop: '1%'}}>
-              Star Wars Episode VII
+              {check_state(state, index, 'title')}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" component="div" sx={{marginLeft: '4%'}}>
-              Space opera 
+              Estreno: {check_state(state, index, 'release_date')}
               <br></br>
-              J. J. Abrams - 2015
+              Puntuación: {check_state(state, index, 'vote_average')}
             </Typography>
           </CardContent>
         <CardMedia
@@ -30,6 +62,7 @@ function RenderRow(props) {
           sx={{ width: '30vw', height: '20vh'}}
           image={starwars}
           alt="star wars poster"
+          // onClick={(e) => dispatch({type: 'test'})}
         />
         </CardActionArea>
       </Card>
@@ -37,8 +70,9 @@ function RenderRow(props) {
   );
 }
 
-export const MoviesList = () => ({ height, width }) => (
-  <Box
+export const MoviesList = (state, dispatch) => ({ height, width }) => {
+
+  return (<Box
     sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
   >
     <FixedSizeList
@@ -47,12 +81,13 @@ export const MoviesList = () => ({ height, width }) => (
       width={width}
       itemSize={200}
       itemCount={200}
+      onItemsRendered={(e) => getData(state, dispatch)(e)}
     // overscanCount={5}
     >
-      {RenderRow}
+      {MakeRow(state, dispatch)}
     </FixedSizeList>
-  </Box>
-)
+  </Box>)
+}
 
 
 
