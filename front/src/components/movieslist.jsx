@@ -57,13 +57,13 @@ function Row({index, style, state, dispatch}) {
               Puntuación: {check_state(state, index, 'vote_average')}
             </Typography>
           </CardContent>
-        <CardMedia
+        {/* <CardMedia
           component="img"
           sx={{ width: '30vw', height: '20vh'}}
           image={starwars}
           alt="star wars poster"
           // onClick={(e) => dispatch({type: 'test'})}
-        />
+        /> */}
         </CardActionArea>
       </Card>
     </ListItem>
@@ -80,7 +80,7 @@ export const MoviesList = (state, dispatch) => ({ height, width }) => {
       height={height}
       width={width}
       itemSize={200}
-      itemCount={200}
+      itemCount={1000}
       onItemsRendered={(e) => getData(state, dispatch)(e)}
     // overscanCount={5}
     >
