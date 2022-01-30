@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1f6c07d2.css",
+    "main.js": "/static/js/main.27885645.js",
+    "static/js/787.00061d44.chunk.js": "/static/js/787.00061d44.chunk.js",
+    "static/media/starwars.jpg": "/static/media/starwars.4f0418c5b830f4668357.jpg",
+    "index.html": "/index.html",
+    "main.1f6c07d2.css.map": "/static/css/main.1f6c07d2.css.map",
+    "main.27885645.js.map": "/static/js/main.27885645.js.map",
+    "787.00061d44.chunk.js.map": "/static/js/787.00061d44.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f6c07d2.css",
+    "static/js/main.27885645.js"
+  ]
+}

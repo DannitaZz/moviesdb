@@ -28,7 +28,7 @@ export const reducer = (state, action) => {
             for (let j=0; j<20; j++){
                 currentData[index + j] = apiData[j]                
             }
-            console.log(currentData)
+            // console.log(currentData)
             return {...state, data: currentData}
         default:
             return {...state}

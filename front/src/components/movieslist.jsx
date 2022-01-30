@@ -6,10 +6,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import starwars from '../img/starwars.jpg';
+// import starwars from '../img/starwars.jpg';
 import { CardActionArea } from '@mui/material';
 import axios from 'axios'
-
 
 const getData = (state, dispatch) => async (e) => {
   const index = parseInt(e.visibleStartIndex);
@@ -41,6 +40,17 @@ const check_state = (state, index, key) => {
   }
 }
 
+const get_image = (state,index) => {
+  try{
+    const poster_path = `http://localhost:3000/api/image${state.data[index].backdrop_path}`
+    // console.log(poster_path)
+    return poster_path
+  }
+  catch{
+    return ''
+  }
+}
+
 function Row({index, style, state, dispatch}) {
 
   return (
@@ -57,13 +67,13 @@ function Row({index, style, state, dispatch}) {
               Puntuación: {check_state(state, index, 'vote_average')}
             </Typography>
           </CardContent>
-        {/* <CardMedia
+        <CardMedia
           component="img"
           sx={{ width: '30vw', height: '20vh'}}
-          image={starwars}
+          src={get_image(state,index)}
           alt="star wars poster"
           // onClick={(e) => dispatch({type: 'test'})}
-        /> */}
+        />
         </CardActionArea>
       </Card>
     </ListItem>
