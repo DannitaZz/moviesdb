@@ -5,7 +5,8 @@ Aplicación hecha con React, Express y Material-UI
   - Responsive
   - Infinite Scroll.
   - Carga de datos perezosa (solo se requiere una pagina a la API cuando es necesaria)
-  Backend
+  
+  Backend:
   - Endpoint que sirve el endpoint de paginas de Movies API procesada.
   - Endpoint que actua como proxy al endpoint de imagenes de MoviesAPI
 
